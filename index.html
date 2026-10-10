@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Perro y Gato</title>
+<meta name="description" content="Dos pantallas: un perro con ENTRAR y un gato con SALIR.">
+<meta name="theme-color" content="#FCD535">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="mobile-web-app-capable" content="yes">
+<style>
+  :root { --fondo-perro:#FFF4E0; --texto-perro:#5D3A1A; --fondo-gato:#E8E4F3; --texto-gato:#3B2F5C;
+          --verde:#2E7D32; --rojo:#C62828; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; height:100%; }
+  body { font-family: system-ui, Roboto, "Segoe UI", sans-serif; overflow:hidden;
+         -webkit-tap-highlight-color: transparent; user-select:none; }
+  .pantalla { position:fixed; inset:0; display:flex; flex-direction:column; align-items:center;
+               justify-content:center; gap:28px; padding: max(24px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom));
+               transition: opacity .25s ease, transform .25s ease; }
+  .pantalla[hidden] { display:none; }
+  .pantalla.entra { animation: entrar .28s ease-out; }
+  @keyframes entrar { from { opacity:0; transform: translateY(14px); } to { opacity:1; transform:none; } }
+  #perro { background: var(--fondo-perro); color: var(--texto-perro); }
+  #gato  { background: var(--fondo-gato);  color: var(--texto-gato); }
+  h1 { margin:0; font-size: clamp(22px, 6.5vw, 30px); font-weight:700; text-align:center; }
+  .mascota { width: min(68vw, 300px); height:auto; filter: drop-shadow(0 8px 16px rgba(0,0,0,.12)); }
+  button { appearance:none; border:0; width: min(70vw, 240px); height:60px; border-radius:30px;
+            color:#fff; font: 700 20px/1 inherit; letter-spacing:.5px; cursor:pointer;
+            box-shadow: 0 6px 16px rgba(0,0,0,.18); transition: transform .08s ease, box-shadow .08s ease; }
+  button:active { transform: scale(.96); box-shadow: 0 3px 8px rgba(0,0,0,.18); }
+  #btn-entrar { background: var(--verde); }
+  #btn-salir  { background: var(--rojo); }
+  #instalar { position:fixed; left:50%; bottom: max(16px, env(safe-area-inset-bottom)); transform:translateX(-50%);
+               width:auto; height:44px; padding:0 20px; border-radius:22px; font-size:15px; background:#1f1f1f; color:#FCD535; }
+  #instalar[hidden] { display:none; }
+</style>
+</head>
+<body>
+
+<section id="perro" class="pantalla" aria-label="Pantalla del perro">
+  <h1>¡Hola! Soy el perro</h1>
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="mascota" aria-hidden="true"><path fill="#7A4B22" d="M58,58 C28,66 22,122 38,138 C54,150 72,124 70,82 Z" /> <path fill="#7A4B22" d="M142,58 C172,66 178,122 162,138 C146,150 128,124 130,82 Z" /> <path fill="#D32F2F" d="M56,146 Q100,184 144,146 L150,158 Q100,198 50,158 Z" /> <path fill="#FCD535" d="M100,176 m-7,0 a7,7 0 1 0 14,0 a7,7 0 1 0 -14,0" /> <path fill="#C68642" d="M100,40 A60,60 0 1 1 100,160 A60,60 0 1 1 100,40 Z" /> <path fill="#9C6630" d="M122,86 m-18,0 a18,18 0 1 0 36,0 a18,18 0 1 0 -36,0" /> <path fill="#F5E6D3" d="M66,122 A34,26 0 1 1 134,122 A34,26 0 1 1 66,122 Z" /> <path fill="#FFFFFF" d="M78,88 m-9,0 a9,9 0 1 0 18,0 a9,9 0 1 0 -18,0" /> <path fill="#FFFFFF" d="M122,88 m-9,0 a9,9 0 1 0 18,0 a9,9 0 1 0 -18,0" /> <path fill="#2B1A0E" d="M79,89 m-5,0 a5,5 0 1 0 10,0 a5,5 0 1 0 -10,0" /> <path fill="#2B1A0E" d="M123,89 m-5,0 a5,5 0 1 0 10,0 a5,5 0 1 0 -10,0" /> <path fill="#FFFFFF" d="M81,86 m-2,0 a2,2 0 1 0 4,0 a2,2 0 1 0 -4,0" /> <path fill="#FFFFFF" d="M125,86 m-2,0 a2,2 0 1 0 4,0 a2,2 0 1 0 -4,0" /> <path fill="none" stroke="#7A4B22" stroke-width="3" stroke-linecap="round" d="M68,74 Q78,69 88,73" /> <path fill="none" stroke="#7A4B22" stroke-width="3" stroke-linecap="round" d="M112,73 Q122,69 132,74" /> <path fill="#2B1A0E" d="M88,110 Q100,103 112,110 Q110,122 100,125 Q90,122 88,110 Z" /> <path fill="none" stroke="#3B2412" stroke-width="3" stroke-linecap="round" d="M100,125 L100,133" /> <path fill="none" stroke="#3B2412" stroke-width="3" stroke-linecap="round" d="M100,133 Q90,145 80,135" /> <path fill="none" stroke="#3B2412" stroke-width="3" stroke-linecap="round" d="M100,133 Q110,145 120,135" /> <path fill="#F28B9B" d="M92,136 Q100,154 108,136 Z" /></svg>
+  <button id="btn-entrar" type="button">ENTRAR</button>
+</section>
+
+<section id="gato" class="pantalla" hidden aria-label="Pantalla del gato">
+  <h1>¡Miau! Soy el gato</h1>
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="mascota" aria-hidden="true"><path fill="#8E8E9E" d="M52,84 L40,28 L88,56 Z" /> <path fill="#8E8E9E" d="M148,84 L160,28 L112,56 Z" /> <path fill="#F4A7B9" d="M57,78 L49,42 L80,60 Z" /> <path fill="#F4A7B9" d="M143,78 L151,42 L120,60 Z" /> <path fill="#3F51B5" d="M58,150 Q100,186 142,150 L148,162 Q100,200 52,162 Z" /> <path fill="#FCD535" d="M100,180 m-7,0 a7,7 0 1 0 14,0 a7,7 0 1 0 -14,0" /> <path fill="#9E9EAE" d="M40,105 A60,55 0 1 1 160,105 A60,55 0 1 1 40,105 Z" /> <path fill="none" stroke="#7A7A8C" stroke-width="4" stroke-linecap="round" d="M100,54 L100,72" /> <path fill="none" stroke="#7A7A8C" stroke-width="4" stroke-linecap="round" d="M87,58 L90,74" /> <path fill="none" stroke="#7A7A8C" stroke-width="4" stroke-linecap="round" d="M113,58 L110,74" /> <path fill="#F4A7B9" fill-opacity="0.55" d="M62,124 m-8,0 a8,8 0 1 0 16,0 a8,8 0 1 0 -16,0" /> <path fill="#F4A7B9" fill-opacity="0.55" d="M138,124 m-8,0 a8,8 0 1 0 16,0 a8,8 0 1 0 -16,0" /> <path fill="#7CB342" d="M78,98 m-10,0 a10,12 0 1 0 20,0 a10,12 0 1 0 -20,0" /> <path fill="#7CB342" d="M122,98 m-10,0 a10,12 0 1 0 20,0 a10,12 0 1 0 -20,0" /> <path fill="#1F1F2A" d="M78,98 m-3.5,0 a3.5,10 0 1 0 7,0 a3.5,10 0 1 0 -7,0" /> <path fill="#1F1F2A" d="M122,98 m-3.5,0 a3.5,10 0 1 0 7,0 a3.5,10 0 1 0 -7,0" /> <path fill="#FFFFFF" d="M81,92 m-2,0 a2,2 0 1 0 4,0 a2,2 0 1 0 -4,0" /> <path fill="#FFFFFF" d="M125,92 m-2,0 a2,2 0 1 0 4,0 a2,2 0 1 0 -4,0" /> <path fill="#E88CA0" d="M93,118 L107,118 L100,126 Z" /> <path fill="none" stroke="#4A4A5A" stroke-width="2.5" stroke-linecap="round" d="M100,126 L100,132" /> <path fill="none" stroke="#4A4A5A" stroke-width="2.5" stroke-linecap="round" d="M100,132 Q92,140 84,133" /> <path fill="none" stroke="#4A4A5A" stroke-width="2.5" stroke-linecap="round" d="M100,132 Q108,140 116,133" /> <path fill="none" stroke="#4A4A5A" stroke-width="2" stroke-linecap="round" d="M28,112 L68,118" /> <path fill="none" stroke="#4A4A5A" stroke-width="2" stroke-linecap="round" d="M26,126 L68,125" /> <path fill="none" stroke="#4A4A5A" stroke-width="2" stroke-linecap="round" d="M172,112 L132,118" /> <path fill="none" stroke="#4A4A5A" stroke-width="2" stroke-linecap="round" d="M174,126 L132,125" /></svg>
+  <button id="btn-salir" type="button">SALIR</button>
+</section>
+
+<button id="instalar" type="button" hidden>Instalar en el celular</button>
+
+<script>
+  const perro = document.getElementById('perro');
+  const gato  = document.getElementById('gato');
+
+  function mostrar(cual) {
+    const ver = cual === 'gato' ? gato : perro;
+    const ocultar = cual === 'gato' ? perro : gato;
+    ocultar.hidden = true;
+    ver.hidden = false;
+    ver.classList.remove('entra'); void ver.offsetWidth; ver.classList.add('entra');
+    document.querySelector('meta[name=theme-color]').content = cual === 'gato' ? '#E8E4F3' : '#FFF4E0';
+  }
+
+  // ENTRAR agrega una entrada al historial: el botón "atrás" del celular vuelve al perro.
+  document.getElementById('btn-entrar').onclick = () => { history.pushState({p:'gato'}, '', '#gato'); mostrar('gato'); };
+  document.getElementById('btn-salir').onclick  = () => { if (history.state && history.state.p === 'gato') history.back(); else mostrar('perro'); };
+  window.addEventListener('popstate', e => mostrar(e.state && e.state.p === 'gato' ? 'gato' : 'perro'));
+  if (location.hash === '#gato') { history.replaceState({p:'gato'}, '', '#gato'); mostrar('gato'); }
+  else document.querySelector('meta[name=theme-color]').content = '#FFF4E0';
+
+  // Botón de instalación (Chrome en Android lo ofrece cuando la PWA es instalable).
+  let promptInstalar = null;
+  const btnInstalar = document.getElementById('instalar');
+  window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); promptInstalar = e; btnInstalar.hidden = false; });
+  btnInstalar.onclick = async () => { if (!promptInstalar) return; promptInstalar.prompt(); await promptInstalar.userChoice; promptInstalar = null; btnInstalar.hidden = true; };
+  window.addEventListener('appinstalled', () => { btnInstalar.hidden = true; });
+
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+</script>
+</body>
+</html>
